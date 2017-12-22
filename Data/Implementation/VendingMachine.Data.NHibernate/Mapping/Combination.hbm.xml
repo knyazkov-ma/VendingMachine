@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <class name="VendingMachine.Entity.Combination, VendingMachine.Entity" table="Combination" lazy="false">
+    <id name="Id" column="Id" unsaved-value="0"></id>
+
+    <many-to-one foreign-key="Combination_ProductFrom_FK" name="ProductFrom" fetch="join" column="ProductFromId" class="VendingMachine.Entity.Product, VendingMachine.Entity" not-null="true"/>
+    <many-to-one foreign-key="Combination_ProductTo_FK" name="ProductTo" fetch="join" column="ProductToId" class="VendingMachine.Entity.Product, VendingMachine.Entity" not-null="true"/>
+    <property name="Required" type="Boolean" not-null="true"/>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <class name="VendingMachine.Entity.Product, VendingMachine.Entity" table="Product" lazy="false">
+    <id name="Id" column="Id" unsaved-value="0"></id>
+
+    <property name="Name" length="1000" not-null="true"/>
+    <property name="Ord" type="Int32" not-null="true"/>
+    <property name="MaxCountPerOrder" type="Int32" not-null="true"/>
+    <property name="Price" type="Decimal"  not-null="true"/>
+    <property name="ProductType" type="VendingMachine.Entity.ProductType, VendingMachine.Entity" not-null="true"/>
+  </class>
+</hibernate-mapping>
