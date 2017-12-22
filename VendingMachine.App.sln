@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendingMachine.Entity", "Ve
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendingMachine.Migration", "VendingMachine.Migration\VendingMachine.Migration.csproj", "{FF70AF8F-855F-4D89-BC47-B65B8F5FFA3A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendingMachine.WebApp", "Presentation\VendingMachine.WebApp\VendingMachine.WebApp.csproj", "{054150B4-6C89-4783-ABF3-B263B003B7B7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{E45167BA-49BE-4AEE-8253-25F703101D95}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +57,10 @@ Global
 		{FF70AF8F-855F-4D89-BC47-B65B8F5FFA3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF70AF8F-855F-4D89-BC47-B65B8F5FFA3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF70AF8F-855F-4D89-BC47-B65B8F5FFA3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{054150B4-6C89-4783-ABF3-B263B003B7B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{054150B4-6C89-4783-ABF3-B263B003B7B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{054150B4-6C89-4783-ABF3-B263B003B7B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{054150B4-6C89-4783-ABF3-B263B003B7B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,5 +70,6 @@ Global
 		{830D0361-E3E5-4E5C-967D-9BC201CDDC32} = {02E9AA9C-30CC-488B-A3E9-2D927D1D5522}
 		{B2C53EC7-C7D8-4DAD-8BCC-F644E3F5D217} = {02E9AA9C-30CC-488B-A3E9-2D927D1D5522}
 		{C480A8C6-A30E-4519-B2CA-E48B62E53CA6} = {02E9AA9C-30CC-488B-A3E9-2D927D1D5522}
+		{054150B4-6C89-4783-ABF3-B263B003B7B7} = {E45167BA-49BE-4AEE-8253-25F703101D95}
 	EndGlobalSection
 EndGlobal

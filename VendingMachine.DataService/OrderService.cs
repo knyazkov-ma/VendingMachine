@@ -21,8 +21,14 @@ namespace VendingMachine.DataService
 
         public IEnumerable<ProductDTO> GetProductList()
         {
-            IEnumerable<Product> products = productRepository.GetList().ToList();
-            IEnumerable<Combination> combinations = combinationRepository.GetList().ToList();
+            IEnumerable<Product> products = productRepository
+                .GetList()
+                    .OrderBy(t => t.ProductType)
+                    .ThenBy(t => t.Ord)
+                .ToList();
+            IEnumerable<Combination> combinations = combinationRepository
+                .GetList()
+                .ToList();
 
             IList<ProductDTO> list = new List<ProductDTO>();
 
