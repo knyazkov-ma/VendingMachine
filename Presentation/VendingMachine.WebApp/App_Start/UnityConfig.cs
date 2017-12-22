@@ -60,7 +60,7 @@ namespace VendingMachine.WebApp.App_Start
             VendingMachine.Data.NHibernate.Repository.Installer.Install(container);
 
             VendingMachine.Data.Installer.Install(container, new PerRequestLifetimeManager());
-
+            
             //регистрация Мигратора
             VendingMachine.Migration.Installer.Install(container, connectionString);
                        

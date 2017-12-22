@@ -22,17 +22,12 @@
             $stateProvider
                 .state('order', {
                     url: '/',
-                    templateUrl: '/' + culture + '/AngularTemplate/Order',
+                    templateUrl: '/AngularTemplate/Order',
                     menu: 'order'
                 })
 
             delete $httpProvider.defaults.headers.common['X-Requested-With'];
-            fileUploadProvider.defaults.redirect = window.location.href.replace(
-                /\/[^\/]*$/,
-                '/cors/result.html?%s'
-            );
-
-
+            
         }
     ]);
 

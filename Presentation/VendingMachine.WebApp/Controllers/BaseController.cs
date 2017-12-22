@@ -6,8 +6,6 @@ using VendingMachine.DataService.Common;
 
 namespace VendingMachine.WebApp.Controllers
 {
-    //Содержит метод для установки ModelState
-    [Authorize]
     public class BaseApiController : ApiController
     {
         private readonly ILog log = LogManager.GetLogger("VendingMachine.WebApp");

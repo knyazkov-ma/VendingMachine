@@ -4,7 +4,6 @@ using VendingMachine.DataService.DTO;
 
 namespace VendingMachine.WebApp.Controllers
 {
-
     public class OrderController : BaseApiController
     {
         private readonly IOrderService orderService;

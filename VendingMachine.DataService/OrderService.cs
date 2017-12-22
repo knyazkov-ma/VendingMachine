@@ -39,7 +39,7 @@ namespace VendingMachine.DataService
 
             foreach (var p in products)
             {
-                ProductDTO dto = new ProductDTO
+                ProductDTO d = new ProductDTO
                 {
                     Id = p.Id,
                     MaxCountPerOrder = p.MaxCountPerOrder,
@@ -48,6 +48,7 @@ namespace VendingMachine.DataService
                     ProductType = p.ProductType,
                     Combinations = combinations.Where(t => t.ProductFrom.Id == p.Id)
                 };
+                list.Add(d);
             }
 
             AssortmentDTO assortment = new AssortmentDTO

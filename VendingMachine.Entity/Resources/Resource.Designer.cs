@@ -22,7 +22,7 @@ namespace VendingMachine.Entity.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resource {
+    public class Resource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace VendingMachine.Entity.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("VendingMachine.Entity.Resources.Resource", typeof(Resource).Assembly);
@@ -51,7 +51,7 @@ namespace VendingMachine.Entity.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace VendingMachine.Entity.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Напиток.
         /// </summary>
-        internal static string ProductType_Drink {
+        public static string ProductType_Drink {
             get {
                 return ResourceManager.GetString("ProductType_Drink", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace VendingMachine.Entity.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Добавка к напитку.
         /// </summary>
-        internal static string ProductType_DrinkAddition {
+        public static string ProductType_DrinkAddition {
             get {
                 return ResourceManager.GetString("ProductType_DrinkAddition", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace VendingMachine.Entity.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Еда.
         /// </summary>
-        internal static string ProductType_Food {
+        public static string ProductType_Food {
             get {
                 return ResourceManager.GetString("ProductType_Food", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace VendingMachine.Entity.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Добавка к еде.
         /// </summary>
-        internal static string ProductType_FoodAddition {
+        public static string ProductType_FoodAddition {
             get {
                 return ResourceManager.GetString("ProductType_FoodAddition", resourceCulture);
             }

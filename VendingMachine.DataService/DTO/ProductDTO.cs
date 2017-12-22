@@ -35,5 +35,6 @@ namespace VendingMachine.DataService.DTO
         /// Комбинации с добавками
         /// </summary>
         public IEnumerable<Combination> Combinations { get; set; }
+
     }
 }

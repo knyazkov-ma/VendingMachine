@@ -1,7 +1,5 @@
 ﻿using System.Linq;
 using System.Web.Http;
-using System.Collections.Generic;
-using System;
 using Unity.ServiceLocation;
 using VendingMachine.WebApp.App_Start;
 
@@ -15,16 +13,18 @@ namespace VendingMachine.WebApp
             //Unity configuration for Web API controllers
             var container = UnityConfig.GetConfiguredContainer();
             config.DependencyResolver = new UnityResolver(container);
-            
+
             UnityServiceLocator serviceLocator = new UnityServiceLocator(container);
             
             // Web API routes
             config.MapHttpAttributeRoutes();
-            
+
+
+
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{action}/{id}",
-                defaults: new { id = RouteParameter.Optional}
+                defaults: new { id = RouteParameter.Optional }
             );
             
             var appXmlType = config.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(t => t.MediaType == "application/xml");

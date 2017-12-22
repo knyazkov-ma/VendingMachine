@@ -11,7 +11,7 @@
 
            
             vm.menu = {};
-            localizedMenu = localizedMenuService.get();
+            localizedMenu = menuService.get();
             vm.menu.items = [];
             for (var propertyName in localizedMenu) {
                 vm.menu.items.push({ displayName: localizedMenu[propertyName], name: propertyName })

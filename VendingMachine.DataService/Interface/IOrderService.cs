@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using VendingMachine.DataService.DTO;
+﻿using VendingMachine.DataService.DTO;
 
 namespace VendingMachine.DataService.Interface
 {
