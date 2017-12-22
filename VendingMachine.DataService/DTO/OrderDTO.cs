@@ -16,5 +16,10 @@ namespace VendingMachine.DataService.DTO
         /// Выбран ли набор
         /// </summary>
         public bool Composition { get; set; }
+
+        /// <summary>
+        /// Количество кусочков сахара
+        /// </summary>
+        public int SugarCount { get; set; }
     }
 }

@@ -117,8 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Action_Cancel" xml:space="preserve">
+    <value>Отменить</value>
+  </data>
+  <data name="Action_Purchase" xml:space="preserve">
+    <value>Подвердить покупку</value>
+  </data>
   <data name="AppName" xml:space="preserve">
     <value>Аппарат с едой</value>
+  </data>
+  <data name="Label_RUR" xml:space="preserve">
+    <value>руб.</value>
+  </data>
+  <data name="Label_Summary" xml:space="preserve">
+    <value>Стоимость</value>
   </data>
   <data name="Menu_Order" xml:space="preserve">
     <value>Заказ</value>

@@ -12,13 +12,17 @@ namespace VendingMachine.DataService
         private readonly IBaseRepository<Product> productRepository;
         private readonly IBaseRepository<Combination> combinationRepository;
         private readonly IBaseRepository<Composition> compositionRepository;
+        private readonly IBaseRepository<Settings> settingsRepository;
+
         public OrderService(IBaseRepository<Product> productRepository,
             IBaseRepository<Combination> combinationRepository,
-            IBaseRepository<Composition> compositionRepository)
+            IBaseRepository<Composition> compositionRepository,
+            IBaseRepository<Settings> settingsRepository)
         {
             this.productRepository = productRepository;
             this.combinationRepository = combinationRepository;
             this.compositionRepository = compositionRepository;
+            this.settingsRepository = settingsRepository;
         }
 
         /// <summary>
@@ -42,7 +46,6 @@ namespace VendingMachine.DataService
                 ProductDTO d = new ProductDTO
                 {
                     Id = p.Id,
-                    MaxCountPerOrder = p.MaxCountPerOrder,
                     Name = p.Name,
                     Price = p.Price,
                     ProductType = p.ProductType,
@@ -50,7 +53,7 @@ namespace VendingMachine.DataService
                 };
                 list.Add(d);
             }
-
+            Settings settings = settingsRepository.GetList().FirstOrDefault();
             AssortmentDTO assortment = new AssortmentDTO
             {
                 Composition = compositionRepository.GetList().FirstOrDefault(),
@@ -74,7 +77,13 @@ namespace VendingMachine.DataService
                     Items = list.Where(t => t.ProductType == ProductType.FoodAddition),
                     ProductType = ProductType.FoodAddition
                 }
-            }; 
+            };
+
+            if (settings != null)
+            {
+                assortment.MaxSugarCount = settings.MaxSugarCount;
+                assortment.SugarId = settings.Sugar.Id;
+            }
 
             return assortment;
         }

@@ -22,6 +22,13 @@
        Price DECIMAL(19,5) not null DEFAULT(0),
        primary key (Id)
     )
+	
+	create table Settings (
+        Id BIGINT not null,
+       MaxSugarCount INT not null,
+       SugarId BIGINT not null,
+       primary key (Id)
+    )
 
     alter table Combination 
         add constraint Combination_ProductFrom_FK 
@@ -33,22 +40,27 @@
         foreign key (ProductToId) 
         references Product
 
-INSERT [Product] (Id, ProductType, Name, Price, Ord, MaxCountPerOrder) VALUES (1, 0, 'Вода',		20,		0,	1)
-INSERT [Product] (Id, ProductType, Name, Price, Ord, MaxCountPerOrder) VALUES (2, 0, 'Экспрессо',	50,		1,	1)
-INSERT [Product] (Id, ProductType, Name, Price, Ord, MaxCountPerOrder) VALUES (3, 0, 'Латте',		60,		2,	1)
-INSERT [Product] (Id, ProductType, Name, Price, Ord, MaxCountPerOrder) VALUES (4, 0, 'Капучино',	70,		3,	1)
-INSERT [Product] (Id, ProductType, Name, Price, Ord, MaxCountPerOrder) VALUES (5, 0, 'Чай черные',	25,		4,	1)
-INSERT [Product] (Id, ProductType, Name, Price, Ord, MaxCountPerOrder) VALUES (6, 0, 'Чай зелёный', 25,		5,	1)
-INSERT [Product] (Id, ProductType, Name, Price, Ord, MaxCountPerOrder) VALUES (7, 1, 'Молоко',		10,		6,	1)
-INSERT [Product] (Id, ProductType, Name, Price, Ord, MaxCountPerOrder) VALUES (8, 1, 'Сироп',		5,		7,	1)
-INSERT [Product] (Id, ProductType, Name, Price, Ord, MaxCountPerOrder) VALUES (9, 1, 'Сахар',		3,		8,	5)
-INSERT [Product] (Id, ProductType, Name, Price, Ord, MaxCountPerOrder) VALUES (10, 2, 'Хлеб',		10,		9,	1)
-INSERT [Product] (Id, ProductType, Name, Price, Ord, MaxCountPerOrder) VALUES (11, 2, 'Булочка',	15,		10, 1)
-INSERT [Product] (Id, ProductType, Name, Price, Ord, MaxCountPerOrder) VALUES (12, 2, 'Чипсы',		34,		11, 1)
-INSERT [Product] (Id, ProductType, Name, Price, Ord, MaxCountPerOrder) VALUES (13, 2, 'Печенье',	29,		12, 1)
-INSERT [Product] (Id, ProductType, Name, Price, Ord, MaxCountPerOrder) VALUES (14, 3, 'Ветчина',	15,		13, 1)
-INSERT [Product] (Id, ProductType, Name, Price, Ord, MaxCountPerOrder) VALUES (15, 3, 'Сыр',		10,		14, 1)
-INSERT [Product] (Id, ProductType, Name, Price, Ord, MaxCountPerOrder) VALUES (16, 3, 'Джем',		7,		15, 1)
+	alter table Settings 
+        add constraint Settings_Product_FK 
+        foreign key (SugarId) 
+        references Product
+
+INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (1, 0, 'Вода',		20,		0)
+INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (2, 0, 'Экспрессо',	50,		1)
+INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (3, 0, 'Латте',		60,		2)
+INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (4, 0, 'Капучино',	70,		3)
+INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (5, 0, 'Чай черные',	25,		4)
+INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (6, 0, 'Чай зелёный', 25,		5)
+INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (7, 1, 'Молоко',		10,		6)
+INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (8, 1, 'Сироп',		5,		7)
+INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (9, 1, 'Сахар',		3,		8)
+INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (10, 2, 'Хлеб',		10,		9)
+INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (11, 2, 'Булочка',	15,		10)
+INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (12, 2, 'Чипсы',		34,		11)
+INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (13, 2, 'Печенье',	29,		12)
+INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (14, 3, 'Ветчина',	15,		13)
+INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (15, 3, 'Сыр',		10,		14)
+INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (16, 3, 'Джем',		7,		15)
 
 INSERT [Combination] (Id, ProductFromId, ProductToId, [Required]) VALUES (1, 1, 8, 0)
 INSERT [Combination] (Id, ProductFromId, ProductToId, [Required]) VALUES (2, 1, 9, 0)
@@ -70,3 +82,5 @@ INSERT [Combination] (Id, ProductFromId, ProductToId, [Required]) VALUES (17, 11
 INSERT [Combination] (Id, ProductFromId, ProductToId, [Required]) VALUES (18, 11, 16, 0)
 
 INSERT [Composition] (Id, Note, Price) VALUES (1, 'Комплекс: 1 напиток с любой едой + 1 напиток с любой добавкой на выбор',  90)
+
+INSERT [Settings] (Id, MaxSugarCount, SugarId) VALUES (1, 5, 9);

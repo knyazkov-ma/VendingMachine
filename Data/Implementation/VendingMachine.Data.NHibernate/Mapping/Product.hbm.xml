@@ -5,7 +5,6 @@
 
     <property name="Name" length="1000" not-null="true"/>
     <property name="Ord" type="Int32" not-null="true"/>
-    <property name="MaxCountPerOrder" type="Int32" not-null="true"/>
     <property name="Price" type="Decimal"  not-null="true"/>
     <property name="ProductType" type="VendingMachine.Entity.ProductType, VendingMachine.Entity" not-null="true"/>
   </class>

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <class name="VendingMachine.Entity.Settings, VendingMachine.Entity" table="Settings" lazy="false">
+    <id name="Id" column="Id" unsaved-value="0"></id>
+
+    <property name="MaxSugarCount" type="Int32" not-null="true"/>
+    <many-to-one foreign-key="Settings_Product_FK" name="Sugar" fetch="join" column="SugarId" class="VendingMachine.Entity.Product, VendingMachine.Entity" not-null="true"/>
+  </class>
+</hibernate-mapping>

@@ -61,11 +61,47 @@ namespace VendingMachine.WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Отменить.
+        /// </summary>
+        public static string Action_Cancel {
+            get {
+                return ResourceManager.GetString("Action_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Подвердить покупку.
+        /// </summary>
+        public static string Action_Purchase {
+            get {
+                return ResourceManager.GetString("Action_Purchase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Аппарат с едой.
         /// </summary>
         public static string AppName {
             get {
                 return ResourceManager.GetString("AppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to руб..
+        /// </summary>
+        public static string Label_RUR {
+            get {
+                return ResourceManager.GetString("Label_RUR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Стоимость.
+        /// </summary>
+        public static string Label_Summary {
+            get {
+                return ResourceManager.GetString("Label_Summary", resourceCulture);
             }
         }
         

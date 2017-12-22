@@ -25,9 +25,6 @@
         /// </summary>
         public ProductType ProductType { get; set; }
 
-        /// <summary>
-        /// Максимальное количество единиц продукта за 1 заказ
-        /// </summary>
-        public int MaxCountPerOrder { get; set; }
+        
     }
 }

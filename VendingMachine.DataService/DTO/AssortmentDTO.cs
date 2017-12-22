@@ -31,5 +31,12 @@ namespace VendingMachine.DataService.DTO
         /// Набор
         /// </summary>
         public Composition Composition { get; set; }
+
+        /// <summary>
+        /// Максимальное количество кусочков сахара
+        /// </summary>
+        public int MaxSugarCount { get; set; }
+
+        public long SugarId { get; set; }
     }
 }
