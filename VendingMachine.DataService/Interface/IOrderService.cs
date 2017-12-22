@@ -5,7 +5,7 @@ namespace VendingMachine.DataService.Interface
 {
     public interface IOrderService
     {
-        IEnumerable<ProductDTO> GetProductList();
-        void OrderCostPrepare(OrderDTO order);
+        AssortmentDTO GetAssortment();
+        decimal GetOrderCost(OrderDTO order);
     }
 }

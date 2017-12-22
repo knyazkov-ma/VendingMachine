@@ -11,6 +11,7 @@ namespace VendingMachine.Data.NHibernate.Repository
            
             container.RegisterType<IBaseRepository<Product>, BaseRepository<Product>>();
             container.RegisterType<IBaseRepository<Combination>, BaseRepository<Combination>>();
+            container.RegisterType<IBaseRepository<Composition>, BaseRepository<Composition>>();
         }
         
     }

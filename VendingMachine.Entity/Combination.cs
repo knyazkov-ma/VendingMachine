@@ -1,7 +1,7 @@
 ﻿namespace VendingMachine.Entity
 {
     /// <summary>
-    /// Комбинация продукта
+    /// Комбинация продуктов/добавок
     /// </summary>
     public class Combination : BaseEntity
     {
@@ -12,7 +12,7 @@
 
 
         /// <summary>
-        /// Продукт, с которым комбинируется
+        /// Продукт/добавка, с которым комбинируется
         /// </summary>
         public Product ProductTo { get; set; }
 

@@ -11,15 +11,20 @@ namespace VendingMachine.DataService
     {
         private readonly IBaseRepository<Product> productRepository;
         private readonly IBaseRepository<Combination> combinationRepository;
-        
+        private readonly IBaseRepository<Composition> compositionRepository;
         public OrderService(IBaseRepository<Product> productRepository,
-            IBaseRepository<Combination> combinationRepository)
+            IBaseRepository<Combination> combinationRepository,
+            IBaseRepository<Composition> compositionRepository)
         {
             this.productRepository = productRepository;
-            this.combinationRepository = combinationRepository;            
+            this.combinationRepository = combinationRepository;
+            this.compositionRepository = compositionRepository;
         }
 
-        public IEnumerable<ProductDTO> GetProductList()
+        /// <summary>
+        /// Доступный для выбора ассортимент
+        /// </summary>
+        public AssortmentDTO GetAssortment()
         {
             IEnumerable<Product> products = productRepository
                 .GetList()
@@ -41,16 +46,54 @@ namespace VendingMachine.DataService
                     Name = p.Name,
                     Price = p.Price,
                     ProductType = p.ProductType,
-                    ProductTypeName = "",
                     Combinations = combinations.Where(t => t.ProductFrom.Id == p.Id)
                 };
             }
 
-            return list;
+            AssortmentDTO assortment = new AssortmentDTO
+            {
+                Composition = compositionRepository.GetList().FirstOrDefault(),
+                DrinkGroup = new AssortmentGroupDTO
+                {
+                    Items = list.Where(t => t.ProductType == ProductType.Drink),
+                    ProductType = ProductType.Drink
+                },
+                DrinkAdditionGroup = new AssortmentGroupDTO
+                {
+                    Items = list.Where(t => t.ProductType == ProductType.DrinkAddition),
+                    ProductType = ProductType.DrinkAddition
+                },
+                FoodGroup = new AssortmentGroupDTO
+                {
+                    Items = list.Where(t => t.ProductType == ProductType.Food),
+                    ProductType = ProductType.Food
+                },
+                FoodAdditionGroup = new AssortmentGroupDTO
+                {
+                    Items = list.Where(t => t.ProductType == ProductType.FoodAddition),
+                    ProductType = ProductType.FoodAddition
+                }
+            }; 
+
+            return assortment;
         }
-        public void OrderCostPrepare(OrderDTO order)
+
+        /// <summary>
+        /// Стоимость заказа
+        /// </summary>
+        public decimal GetOrderCost(OrderDTO order)
         {
-            order.Cost = order.Items.Sum(p => p.Price);
+            if (order.Composition)
+            {
+                Composition composition = compositionRepository.GetList().FirstOrDefault();
+                return composition.Price;
+            }
+
+            return productRepository
+                .GetList(t => order.SelectedProductIds.Contains(t.Id))
+                .ToList()
+                .Sum(p => p.Price);
+
         }
 
     }

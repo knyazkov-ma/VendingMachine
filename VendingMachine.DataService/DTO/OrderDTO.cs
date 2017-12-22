@@ -2,9 +2,19 @@
 
 namespace VendingMachine.DataService.DTO
 {
+    /// <summary>
+    /// Заказ
+    /// </summary>
     public class OrderDTO
     {
-        public IEnumerable<ProductDTO> Items { get; set; }
-        public decimal Cost { get; set; }
+        /// <summary>
+        /// ID выбранных продуктов (еда, добавки к еде, напитки, добавки к напиткам)
+        /// </summary>
+        public IEnumerable<long> SelectedProductIds { get; set; }
+
+        /// <summary>
+        /// Выбран ли набор
+        /// </summary>
+        public bool Composition { get; set; }
     }
 }

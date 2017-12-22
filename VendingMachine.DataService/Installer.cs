@@ -17,8 +17,6 @@ namespace VendingMachine.DataService
         {
             Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
-
-            container.AddNewExtension<Interception>();
             Assembly dataService = assemblies.
                 SingleOrDefault(assembly => assembly.GetName().Name == "VendingMachine.DataService");
             foreach (Type t in AllClasses.FromAssemblies(dataService)

@@ -1,32 +1,6 @@
 ﻿namespace VendingMachine.Entity
 {
     /// <summary>
-    /// Тип продукта
-    /// </summary>
-    public enum ProductType
-    {
-        /// <summary>
-        /// Еда
-        /// </summary>
-        Food = 0,
-
-        /// <summary>
-        /// Добавка к еде
-        /// </summary>
-        FoodAddition = 1,
-
-        /// <summary>
-        /// Напиток
-        /// </summary>
-        Drink = 2,
-
-        /// <summary>
-        /// Добавка к напитку
-        /// </summary>
-        DrinkAddition = 3
-    }
-
-    /// <summary>
     /// Продукт
     /// </summary>
     public class Product: BaseEntity

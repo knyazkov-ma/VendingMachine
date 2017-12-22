@@ -74,7 +74,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\DataServiceException.cs" />
+    <Compile Include="Common\DataServiceExceptionData.cs" />
+    <Compile Include="Common\DataServiceInfo.cs" />
+    <Compile Include="DTO\AssortmentGroupDTO.cs" />
     <Compile Include="DTO\OrderDTO.cs" />
+    <Compile Include="DTO\AssortmentDTO.cs" />
     <Compile Include="DTO\ProductDTO.cs" />
     <Compile Include="Installer.cs" />
     <Compile Include="Helpers\EnumExtensions.cs" />

@@ -8,11 +8,18 @@
 
     create table Product (
         Id BIGINT not null,
-       Name NVARCHAR(1000) not null,
+       Name VARCHAR(1000) not null,
        Ord INT not null DEFAULT(0),
        MaxCountPerOrder INT not null DEFAULT(1),
        Price DECIMAL(19,5) not null DEFAULT(0),
        ProductType INT not null DEFAULT(0),
+       primary key (Id)
+    )
+
+	create table Composition (
+        Id BIGINT not null,
+       Note VARCHAR(1000) not null,
+       Price DECIMAL(19,5) not null DEFAULT(0),
        primary key (Id)
     )
 
@@ -61,3 +68,5 @@ INSERT [Combination] (Id, ProductFromId, ProductToId, [Required]) VALUES (15, 10
 INSERT [Combination] (Id, ProductFromId, ProductToId, [Required]) VALUES (16, 11, 14, 0)
 INSERT [Combination] (Id, ProductFromId, ProductToId, [Required]) VALUES (17, 11, 15, 0)
 INSERT [Combination] (Id, ProductFromId, ProductToId, [Required]) VALUES (18, 11, 16, 0)
+
+INSERT [Composition] (Id, Note, Price) VALUES (1, 'Комплекс: 1 напиток с любой едой + 1 напиток с любой добавкой на выбор',  90)
