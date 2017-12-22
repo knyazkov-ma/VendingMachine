@@ -1,34 +1,55 @@
-﻿    create table Combination (
+﻿   create table ForbiddenCombination (
         Id BIGINT not null,
        ProductFromId BIGINT not null,
        ProductToId BIGINT not null,
-       Required BIT not null DEFAULT(0),
+       primary key (Id)
+    )
+
+    create table Settings (
+        Id BIGINT not null,
+       MaxSugarCount INT not null,
+       SugarId BIGINT not null,
+       primary key (Id)
+    )
+
+    create table Composition (
+        Id BIGINT not null,
+       Note VARCHAR(1000) not null,
+       Price DECIMAL(19,5) not null,
+       primary key (Id)
+    )
+
+    create table Combination (
+        Id BIGINT not null,
+       ProductFromId BIGINT not null,
+       ProductToId BIGINT not null,
+       Required BIT not null,
        primary key (Id)
     )
 
     create table Product (
         Id BIGINT not null,
        Name VARCHAR(1000) not null,
-       Ord INT not null DEFAULT(0),
-       MaxCountPerOrder INT not null DEFAULT(1),
-       Price DECIMAL(19,5) not null DEFAULT(0),
-       ProductType INT not null DEFAULT(0),
+       Ord INT not null,
+       Price DECIMAL(19,5) not null,
+       ProductType INT not null,
        primary key (Id)
     )
 
-	create table Composition (
-        Id BIGINT not null,
-       Note VARCHAR(1000) not null,
-       Price DECIMAL(19,5) not null DEFAULT(0),
-       primary key (Id)
-    )
-	
-	create table Settings (
-        Id BIGINT not null,
-       MaxSugarCount INT not null,
-       SugarId BIGINT not null,
-       primary key (Id)
-    )
+    alter table ForbiddenCombination 
+        add constraint ForbiddenCombination_ProductFrom_FK 
+        foreign key (ProductFromId) 
+        references Product
+
+    alter table ForbiddenCombination 
+        add constraint ForbiddenCombination_ProductTo_FK 
+        foreign key (ProductToId) 
+        references Product
+
+    alter table Settings 
+        add constraint Settings_Product_FK 
+        foreign key (SugarId) 
+        references Product
 
     alter table Combination 
         add constraint Combination_ProductFrom_FK 
@@ -40,10 +61,6 @@
         foreign key (ProductToId) 
         references Product
 
-	alter table Settings 
-        add constraint Settings_Product_FK 
-        foreign key (SugarId) 
-        references Product
 
 INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (1, 0, 'Вода',		20,		0)
 INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (2, 0, 'Экспрессо',	50,		1)
@@ -84,3 +101,8 @@ INSERT [Combination] (Id, ProductFromId, ProductToId, [Required]) VALUES (18, 11
 INSERT [Composition] (Id, Note, Price) VALUES (1, 'Комплекс: 1 напиток с любой едой + 1 напиток с любой добавкой на выбор',  90)
 
 INSERT [Settings] (Id, MaxSugarCount, SugarId) VALUES (1, 5, 9);
+
+INSERT [ForbiddenCombination](Id, ProductFromId, ProductToId) VALUES (1, 14, 16);
+INSERT [ForbiddenCombination](Id, ProductFromId, ProductToId) VALUES (2, 15, 16);
+INSERT [ForbiddenCombination](Id, ProductFromId, ProductToId) VALUES (3, 16, 14);
+INSERT [ForbiddenCombination](Id, ProductFromId, ProductToId) VALUES (4, 16, 15);

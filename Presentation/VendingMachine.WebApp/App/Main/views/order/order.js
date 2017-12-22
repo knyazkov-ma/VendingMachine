@@ -17,13 +17,17 @@
                     vm.assortment.DrinkAdditionGroup.SelectedId = 0;
                     vm.assortment.FoodGroup.SelectedId = 0;
                     vm.assortment.FoodAdditionGroup.SelectedId = 0;
+                    
+                    for (var i = 0; i < vm.assortment.DrinkAdditionGroup.Items.length; i++) {
+                        vm.assortment.DrinkAdditionGroup.Items[i].Checked = false;
+                        vm.assortment.DrinkAdditionGroup.Items[i].AllowableCombination = false;
+                        
+                    }
 
                     for (var i = 0; i < vm.assortment.FoodAdditionGroup.Items.length; i++) {
                         vm.assortment.FoodAdditionGroup.Items[i].Checked = false;
-                    }
-
-                    for (var i = 0; i < vm.assortment.DrinkAdditionGroup.Items.length; i++) {
-                        vm.assortment.DrinkAdditionGroup.Items[i].Checked = false;
+                        vm.assortment.FoodAdditionGroup.Items[i].AllowableCombination = false;
+                        
                     }
                     
                     if (vm.assortment.MaxSugarCount)
@@ -76,6 +80,43 @@
                 }, function (error) {
                     $rootScope.$broadcast("error", { errorMsg: error.data.Message });
                 });
+            }
+
+            vm.setAllowableDrinkCombination = function (product)
+            {
+                for (var i = 0; i < vm.assortment.DrinkAdditionGroup.Items.length; i++)
+                {
+                    var p = vm.assortment.DrinkAdditionGroup.Items[i];
+                    p.AllowableCombination = false;
+                    p.Checked = false;
+                    for (var j = 0; j < product.Combinations.length; j++)
+                    {
+                        var c = product.Combinations[j];
+                        if (c.ProductTo.Id == p.Id)
+                        {
+                            if (!c.Required)
+                                p.AllowableCombination = true;
+                            p.Checked = c.Required;
+                            
+                            break;
+                        }
+                    }
+                }
+            }
+            
+            vm.setAllowableFoodCombination = function (product) {
+                for (var i = 0; i < vm.assortment.FoodAdditionGroup.Items.length; i++) {
+                    var p = vm.assortment.FoodAdditionGroup.Items[i];
+                    p.AllowableCombination = false;
+                    p.Checked = false;
+                    for (var j = 0; j < product.Combinations.length; j++) {
+                        var c = product.Combinations[j];
+                        if (c.ProductTo.Id == p.Id) {
+                            p.AllowableCombination = true;
+                            break;
+                        }
+                    }
+                }
             }
 
             vm.cancel = function ()

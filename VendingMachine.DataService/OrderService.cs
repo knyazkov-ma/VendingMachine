@@ -13,16 +13,18 @@ namespace VendingMachine.DataService
         private readonly IBaseRepository<Combination> combinationRepository;
         private readonly IBaseRepository<Composition> compositionRepository;
         private readonly IBaseRepository<Settings> settingsRepository;
-
+        private readonly IBaseRepository<ForbiddenCombination> forbiddenCombinationRepository;
         public OrderService(IBaseRepository<Product> productRepository,
             IBaseRepository<Combination> combinationRepository,
             IBaseRepository<Composition> compositionRepository,
-            IBaseRepository<Settings> settingsRepository)
+            IBaseRepository<Settings> settingsRepository,
+            IBaseRepository<ForbiddenCombination> forbiddenCombinationRepository)
         {
             this.productRepository = productRepository;
             this.combinationRepository = combinationRepository;
             this.compositionRepository = compositionRepository;
             this.settingsRepository = settingsRepository;
+            this.forbiddenCombinationRepository = forbiddenCombinationRepository;
         }
 
         /// <summary>
@@ -38,6 +40,9 @@ namespace VendingMachine.DataService
             IEnumerable<Combination> combinations = combinationRepository
                 .GetList()
                 .ToList();
+            IEnumerable<ForbiddenCombination> forbiddenCombinations = forbiddenCombinationRepository
+                .GetList()
+                .ToList();
 
             IList<ProductDTO> list = new List<ProductDTO>();
 
@@ -51,6 +56,10 @@ namespace VendingMachine.DataService
                     ProductType = p.ProductType,
                     Combinations = combinations.Where(t => t.ProductFrom.Id == p.Id)
                 };
+
+                if(forbiddenCombinations != null)
+                    d.ForbiddenCombinations = forbiddenCombinations.Where(t => t.ProductFrom.Id == p.Id);
+
                 list.Add(d);
             }
             Settings settings = settingsRepository.GetList().FirstOrDefault();
@@ -84,7 +93,7 @@ namespace VendingMachine.DataService
                 assortment.MaxSugarCount = settings.MaxSugarCount;
                 assortment.SugarId = settings.Sugar.Id;
             }
-
+            
             return assortment;
         }
 

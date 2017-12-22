@@ -8,7 +8,7 @@
                     <th colspan="4">{{vm.assortment.DrinkGroup.ProductTypeName}}</th>
                 </tr>
                 <tr ng-repeat="p in vm.assortment.DrinkGroup.Items">
-                    <td><input ng-model="vm.assortment.DrinkGroup.SelectedId" ng-value="p.Id" type="radio"></td>
+                    <td><input ng-model="vm.assortment.DrinkGroup.SelectedId" ng-value="p.Id" ng-change="vm.setAllowableDrinkCombination(p)" type="radio"></td>
                     <td>{{p.Name}}</td>
                     <td>{{p.Price}}</td>
                     <td>@Resource.Label_RUR</td>
@@ -21,7 +21,7 @@
                     <th colspan="4">{{vm.assortment.FoodGroup.ProductTypeName}}</th>
                 </tr>
                 <tr ng-repeat="p in vm.assortment.FoodGroup.Items">
-                    <td><input ng-model="vm.assortment.FoodGroup.SelectedId" ng-value="p.Id" type="radio"></td>
+                    <td><input ng-model="vm.assortment.FoodGroup.SelectedId" ng-value="p.Id" ng-change="vm.setAllowableFoodCombination(p)" type="radio"></td>
                     <td>{{p.Name}}</td>
                     <td>{{p.Price}}</td>
                     <td>@Resource.Label_RUR</td>
@@ -36,7 +36,7 @@
                     <th colspan="4">{{vm.assortment.DrinkAdditionGroup.ProductTypeName}}</th>
                 </tr>
                 <tr ng-repeat="p in vm.assortment.DrinkAdditionGroup.Items">
-                    <td><input ng-model="p.Checked" type="checkbox"></td>
+                    <td><input ng-disabled="p.AllowableCombination != true" ng-model="p.Checked" type="checkbox"></td>
                     <td>
                         <select ng-show="vm.assortment.SugarCount > 0 && p.Id == vm.assortment.SugarId" required ng-model="vm.assortment.SugarCount">
                             <option ng-repeat="option in vm.assortment.SugarCounts" value="{{option}}">{{option}}</option>
@@ -55,7 +55,7 @@
                     <th colspan="4">{{vm.assortment.FoodAdditionGroup.ProductTypeName}}</th>
                 </tr>
                 <tr ng-repeat="p in vm.assortment.FoodAdditionGroup.Items">
-                    <td><input ng-model="p.Checked" type="checkbox"></td>
+                    <td><input ng-disabled="p.AllowableCombination != true" ng-model="p.Checked" type="checkbox"></td>
                     <td>{{p.Name}}</td>
                     <td>{{p.Price}}</td>
                     <td>@Resource.Label_RUR</td>

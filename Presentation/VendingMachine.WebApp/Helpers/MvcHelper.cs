@@ -1,9 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System.Text;
-using System.Threading;
 using System.Web;
-using System.Web.Configuration;
 using System.Web.Mvc;
 
 namespace VendingMachine.WebApp.Helpers

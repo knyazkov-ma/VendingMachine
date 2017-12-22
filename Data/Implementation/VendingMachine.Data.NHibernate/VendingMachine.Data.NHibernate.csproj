@@ -111,6 +111,7 @@
     <Content Include="hibernate.cfg.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Mapping\ForbiddenCombination.hbm.xml" />
     <EmbeddedResource Include="Mapping\Settings.hbm.xml" />
     <EmbeddedResource Include="Mapping\Composition.hbm.xml" />
     <EmbeddedResource Include="Mapping\Combination.hbm.xml" />

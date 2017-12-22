@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using VendingMachine.DataService.Interface;
 using VendingMachine.WebApp.Resources;
 
 namespace VendingMachine.WebApp.Controllers
 {
-        
+
     public class AngularTemplateController : Controller
     {
         

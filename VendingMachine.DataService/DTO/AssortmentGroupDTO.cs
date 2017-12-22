@@ -26,5 +26,7 @@ namespace VendingMachine.DataService.DTO
         /// Продукты
         /// </summary>
         public IEnumerable<ProductDTO> Items { get; set; }
+
+        
     }
 }

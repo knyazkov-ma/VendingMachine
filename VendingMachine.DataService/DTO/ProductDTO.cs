@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using VendingMachine.DataService.Helpers;
 using VendingMachine.Entity;
 
 namespace VendingMachine.DataService.DTO
 {
     /// <summary>
-    /// Продукт с учетом возможной (или необходимой) комбинации его с добавками
+    /// Продукт с учетом возможной (или необходимой) комбинации его с добавками 
+    /// (добавки между собой не должны сочетаться в запрещенных сочетаниях)
     /// </summary>
     public class ProductDTO
     {
@@ -27,14 +27,14 @@ namespace VendingMachine.DataService.DTO
         public ProductType ProductType { get; set; }
                 
         /// <summary>
-        /// Максимальное количество единиц. продукта за 1 заказ
-        /// </summary>
-        public int MaxCountPerOrder { get; set; }
-
-        /// <summary>
-        /// Комбинации с добавками
+        /// Разрешенные комбинации с добавками (некоторые - обязательные)
         /// </summary>
         public IEnumerable<Combination> Combinations { get; set; }
+
+        /// <summary>
+        /// Запрещённые комбинации добавок между собой
+        /// </summary>
+        public IEnumerable<ForbiddenCombination> ForbiddenCombinations { get; set; }
 
     }
 }
