@@ -5,6 +5,6 @@ namespace VendingMachine.DataService.Interface
     public interface IOrderService
     {
         AssortmentDTO GetAssortment();
-        decimal GetOrderCost(OrderDTO order);
+        decimal СonfirmOrder(OrderDTO order);
     }
 }

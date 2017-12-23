@@ -4,6 +4,8 @@ using VendingMachine.DataService.Interface;
 using VendingMachine.Entity;
 using System.Linq;
 using System.Collections.Generic;
+using VendingMachine.DataService.Common;
+using VendingMachine.DataService.Resources;
 
 namespace VendingMachine.DataService
 {
@@ -57,8 +59,32 @@ namespace VendingMachine.DataService
                     Combinations = combinations.Where(t => t.ProductFrom.Id == p.Id)
                 };
 
-                if(forbiddenCombinations != null)
-                    d.ForbiddenCombinations = forbiddenCombinations.Where(t => t.ProductFrom.Id == p.Id);
+                if (forbiddenCombinations != null && p.ProductType == ProductType.FoodAddition)
+                {
+                    /*Пусть несочетаемые пары заданы как:
+                     (1, 2)
+                     (1, 3)
+                     (4, 1)
+                     ...
+                     */
+
+                    /*строим проекцию отношения по прямому отношению:
+                     (1, 2)
+                     (1, 3)
+                     */
+                    d.ForbiddenCombinations = forbiddenCombinations
+                        .Where(t => t.ProductFrom.Id == p.Id);
+
+                    /*достраиваем проекцию по обратному отношению:
+                     (4, 1) -> (1, 4)*/
+                    IEnumerable<ForbiddenCombination> symmetricForbiddenCombinations = forbiddenCombinations
+                        .Where(t => t.ProductTo.Id == p.Id).Select(t => new ForbiddenCombination
+                        {
+                             ProductFrom = t.ProductTo,
+                             ProductTo = t.ProductFrom
+                        });
+                    d.ForbiddenCombinations = d.ForbiddenCombinations.Union(symmetricForbiddenCombinations);
+                }
 
                 list.Add(d);
             }
@@ -98,20 +124,30 @@ namespace VendingMachine.DataService
         }
 
         /// <summary>
-        /// Стоимость заказа
+        /// Подтверждение заказа
         /// </summary>
-        public decimal GetOrderCost(OrderDTO order)
+        public decimal СonfirmOrder(OrderDTO order)
         {
+            IEnumerable<Product> products = productRepository
+                .GetList(t => order.SelectedProductIds.Contains(t.Id))
+                .ToList();
+
+            int countProduct = products.Count(t => t.ProductType == ProductType.Drink || t.ProductType == ProductType.Food);
+            if (countProduct == 0)
+                throw new DataServiceException(Resource.ExceptionMsg_EmptyOrder);
+
             if (order.Composition)
             {
+                int countAdditionProduct = products.Count(t => t.ProductType == ProductType.DrinkAddition || t.ProductType == ProductType.FoodAddition);
+
+                if(countProduct < 2)
+                    throw new DataServiceException(Resource.ExceptionMsg_NotCompleteComposition);
+
                 Composition composition = compositionRepository.GetList().FirstOrDefault();
                 return composition.Price;
             }
 
-            return productRepository
-                .GetList(t => order.SelectedProductIds.Contains(t.Id))
-                .ToList()
-                .Sum(p => p.Price);
+            return products.Sum(p => p.Price);
 
         }
 

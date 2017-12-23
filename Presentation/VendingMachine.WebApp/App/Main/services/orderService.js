@@ -13,14 +13,14 @@
             };
 
                         
-            var _getOrderCost = function (order) {
-                return $http.post(urlWebAPIService.get("Order/GetOrderCost"), JSON.stringify(order)).then(function (results) {
+            var _confirmOrder = function (order) {
+                return $http.post(urlWebAPIService.get("Order/СonfirmOrder"), JSON.stringify(order)).then(function (results) {
                     return results;
                 });
             };
             
             factory.getAssortment   = _getAssortment;
-            factory.getOrderCost    = _getOrderCost;
+            factory.confirmOrder = _confirmOrder;
             
             return factory;
 

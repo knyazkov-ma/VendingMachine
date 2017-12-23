@@ -24,13 +24,13 @@ namespace VendingMachine.WebApp.Controllers
             });
         }
 
-        [Route("api/Order/GetOrderCost")]
+        [Route("api/Order/СonfirmOrder")]
         [HttpPost]
-        public IHttpActionResult GetOrderCost(OrderDTO order)
+        public IHttpActionResult СonfirmOrder(OrderDTO order)
         {
             return execute(delegate ()
             {
-                var cost = orderService.GetOrderCost(order);
+                var cost = orderService.СonfirmOrder(order);
                 result = Json(new { success = true, data = cost });
             });
         }

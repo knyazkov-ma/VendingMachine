@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace VendingMachine.WebApp.Resources {
+namespace VendingMachine.DataService.Resources {
     using System;
     
     
@@ -22,7 +22,7 @@ namespace VendingMachine.WebApp.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resource {
+    internal class Resource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,10 +36,10 @@ namespace VendingMachine.WebApp.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("VendingMachine.WebApp.Resources.Resource", typeof(Resource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("VendingMachine.DataService.Resources.Resource", typeof(Resource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace VendingMachine.WebApp.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,56 +61,20 @@ namespace VendingMachine.WebApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Отменить.
+        ///   Looks up a localized string similar to Для заказа требуется выбрать напиток и/или еду.
         /// </summary>
-        public static string Action_Cancel {
+        internal static string ExceptionMsg_EmptyOrder {
             get {
-                return ResourceManager.GetString("Action_Cancel", resourceCulture);
+                return ResourceManager.GetString("ExceptionMsg_EmptyOrder", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Подвердить заказ.
+        ///   Looks up a localized string similar to Для заказа комплекса необходимо выбрать 1 напиток с любой едой + 1 напиток с любой добавкой.
         /// </summary>
-        public static string Action_ConfirmOrder {
+        internal static string ExceptionMsg_NotCompleteComposition {
             get {
-                return ResourceManager.GetString("Action_ConfirmOrder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Аппарат с едой.
-        /// </summary>
-        public static string AppName {
-            get {
-                return ResourceManager.GetString("AppName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to руб..
-        /// </summary>
-        public static string Label_RUR {
-            get {
-                return ResourceManager.GetString("Label_RUR", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Стоимость.
-        /// </summary>
-        public static string Label_Summary {
-            get {
-                return ResourceManager.GetString("Label_Summary", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Заказ.
-        /// </summary>
-        public static string Menu_Order {
-            get {
-                return ResourceManager.GetString("Menu_Order", resourceCulture);
+                return ResourceManager.GetString("ExceptionMsg_NotCompleteComposition", resourceCulture);
             }
         }
     }

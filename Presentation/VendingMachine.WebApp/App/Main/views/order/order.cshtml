@@ -1,6 +1,11 @@
 ﻿@using VendingMachine.WebApp.Resources
 <div ng-controller="app.views.order.order as vm" style="width: 60%" class="center-block">
-    
+    <div ng-show="vm.errors.ErrorGeneralMessage.Errors.length > 0 && vm.showAlert == true" class="alert alert-danger alert-dismissable">
+        <button type="button" ng-click="vm.closeAlert()" class="close" data-hide="alert">&times;</button>
+        <div ng-repeat="e in vm.errors.ErrorGeneralMessage.Errors">
+            {{e.ErrorMessage}}
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-6">
             <table>
@@ -55,7 +60,7 @@
                     <th colspan="4">{{vm.assortment.FoodAdditionGroup.ProductTypeName}}</th>
                 </tr>
                 <tr ng-repeat="p in vm.assortment.FoodAdditionGroup.Items">
-                    <td><input ng-disabled="p.AllowableCombination != true" ng-model="p.Checked" type="checkbox"></td>
+                    <td><input ng-disabled="p.AllowableCombination != true" ng-model="p.Checked" ng-click="vm.resetForbiddenFoodCombination(p)" type="checkbox"></td>
                     <td>{{p.Name}}</td>
                     <td>{{p.Price}}</td>
                     <td>@Resource.Label_RUR</td>
@@ -77,8 +82,8 @@
    </div>
     <div>
         <div class="col-md-12">
-            <button type="button" ng-click="vm.purchase()" class="btn btn-primary">
-                @Resource.Action_Purchase
+            <button type="button" ng-click="vm.confirmOrder()" class="btn btn-primary">
+                @Resource.Action_ConfirmOrder
             </button>
 
             <button type="button" ng-click="vm.cancel()" class="btn btn-info">

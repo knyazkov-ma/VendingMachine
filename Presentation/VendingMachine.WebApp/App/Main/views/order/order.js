@@ -7,6 +7,12 @@
         function ($scope, $rootScope, $state, orderService) {
 
             var vm = this;
+            vm.showAlert = true;
+
+            vm.closeAlert = function () {
+                vm.errors = {};
+                vm.showAlert = false;
+            }
 
             var init = function () {
 
@@ -47,8 +53,10 @@
                 vm.errors = {};
             }
 
-            vm.purchase = function ()
+            vm.confirmOrder = function ()
             {
+                vm.errors = {};
+                vm.showAlert = true;
 
                 var order = {
                     SelectedProductIds: [],
@@ -75,8 +83,14 @@
                         order.SelectedProductIds.push(p.Id);
                 }
 
-                orderService.getOrderCost(order).then(function (results) {
-                    vm.assortment.Summary = results.data.data;
+                orderService.confirmOrder(order).then(function (results) {
+                    if (results.data.success === false) {
+                        vm.errors = results.data.errors;
+                    }
+                    else {
+                        vm.assortment.Summary = results.data.data;
+                    }
+                    
                 }, function (error) {
                     $rootScope.$broadcast("error", { errorMsg: error.data.Message });
                 });
@@ -113,6 +127,22 @@
                         var c = product.Combinations[j];
                         if (c.ProductTo.Id == p.Id) {
                             p.AllowableCombination = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            vm.resetForbiddenFoodCombination = function (product) {
+                if (!product.Checked)
+                    return;
+
+                for (var i = 0; i < vm.assortment.FoodAdditionGroup.Items.length; i++) {
+                    var p = vm.assortment.FoodAdditionGroup.Items[i];
+                    for (var j = 0; j < product.ForbiddenCombinations.length; j++) {
+                        var c = product.ForbiddenCombinations[j];
+                        if (c.ProductTo.Id == p.Id) {
+                            p.Checked = false;
                             break;
                         }
                     }
