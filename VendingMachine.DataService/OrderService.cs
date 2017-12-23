@@ -34,6 +34,8 @@ namespace VendingMachine.DataService
         /// </summary>
         public AssortmentDTO GetAssortment()
         {
+            //TODO: здесь стоит использовать QueryObject, а не кучу репозиториев, так одни запросы
+             
             IEnumerable<Product> products = productRepository
                 .GetList()
                     .OrderBy(t => t.ProductType)
@@ -66,16 +68,15 @@ namespace VendingMachine.DataService
                      (1, 3)
                      (4, 1)
                      ...
-                     */
-
-                    /*строим новое отношение для 1 по прямому отношению:
+                     
+                     Строим новое отношение для элемента 1 по прямому отношению:
                      (1, 2)
                      (1, 3)
                      */
                     d.ForbiddenCombinations = forbiddenCombinations
                         .Where(t => t.ProductFrom.Id == p.Id);
 
-                    /*достраиваем его по обратному отношению:
+                    /*Достраиваем его по обратному отношению:
                      (4, 1) -> (1, 4)*/
                     IEnumerable<ForbiddenCombination> symmetricForbiddenCombinations = forbiddenCombinations
                         .Where(t => t.ProductTo.Id == p.Id).Select(t => new ForbiddenCombination
@@ -120,6 +121,7 @@ namespace VendingMachine.DataService
                 assortment.SugarId = settings.Sugar.Id;
             }
             
+            //TODO: результат стоит кэшировать
             return assortment;
         }
 

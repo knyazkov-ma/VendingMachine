@@ -3,7 +3,7 @@
 namespace VendingMachine.DataService.DTO
 {
     /// <summary>
-    /// Ассортимент
+    /// Ассортимент, который виден в UI
     /// </summary>
     public class AssortmentDTO
     {
@@ -28,7 +28,7 @@ namespace VendingMachine.DataService.DTO
         public AssortmentGroupDTO DrinkAdditionGroup { get; set; }
 
         /// <summary>
-        /// Набор
+        /// Набор, идущий по фиксированной цене
         /// </summary>
         public Composition Composition { get; set; }
 
@@ -37,6 +37,9 @@ namespace VendingMachine.DataService.DTO
         /// </summary>
         public int MaxSugarCount { get; set; }
 
+        /// <summary>
+        /// Id продукта "сахар"
+        /// </summary>
         public long SugarId { get; set; }
     }
 }

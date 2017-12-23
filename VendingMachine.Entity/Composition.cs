@@ -1,7 +1,7 @@
 ﻿namespace VendingMachine.Entity
 {
     /// <summary>
-    /// Набор
+    /// Набор, идущий по фиксированной цене
     /// </summary>
     public class Composition : BaseEntity
     {

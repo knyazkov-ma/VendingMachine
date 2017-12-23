@@ -18,7 +18,7 @@ namespace VendingMachine.DataService.DTO
         public bool Composition { get; set; }
 
         /// <summary>
-        /// Количество кусочков сахара
+        /// Выбранное количество кусочков сахара (если сахер выбран, его Id содержится в SelectedProductIds)
         /// </summary>
         public int SugarCount { get; set; }
     }

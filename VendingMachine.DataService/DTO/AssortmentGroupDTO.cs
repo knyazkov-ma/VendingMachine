@@ -4,6 +4,9 @@ using VendingMachine.Entity;
 
 namespace VendingMachine.DataService.DTO
 {
+    /// <summary>
+    /// Группа ассортимента (еда, добавки к еде, напитки, добавки к напиткам)
+    /// </summary>
     public class AssortmentGroupDTO
     {
         /// <summary>
@@ -23,7 +26,7 @@ namespace VendingMachine.DataService.DTO
         }
 
         /// <summary>
-        /// Продукты
+        /// Продукты группы
         /// </summary>
         public IEnumerable<ProductDTO> Items { get; set; }
 

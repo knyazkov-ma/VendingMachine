@@ -32,7 +32,7 @@ namespace VendingMachine.DataService.DTO
         public IEnumerable<Combination> Combinations { get; set; }
 
         /// <summary>
-        /// Запрещённые комбинации добавок между собой
+        /// Запрещённые сочетания добавок между собой
         /// </summary>
         public IEnumerable<ForbiddenCombination> ForbiddenCombinations { get; set; }
 

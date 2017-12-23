@@ -1,7 +1,7 @@
 ﻿namespace VendingMachine.Entity
 {
     /// <summary>
-    /// Настройки
+    /// Настройки (здесь только настройки для максимального количества кусочков сахара)
     /// </summary>
     public class Settings : BaseEntity
     {
