@@ -68,14 +68,14 @@ namespace VendingMachine.DataService
                      ...
                      */
 
-                    /*строим проекцию отношения по прямому отношению:
+                    /*строим новое отношение для 1 по прямому отношению:
                      (1, 2)
                      (1, 3)
                      */
                     d.ForbiddenCombinations = forbiddenCombinations
                         .Where(t => t.ProductFrom.Id == p.Id);
 
-                    /*достраиваем проекцию по обратному отношению:
+                    /*достраиваем его по обратному отношению:
                      (4, 1) -> (1, 4)*/
                     IEnumerable<ForbiddenCombination> symmetricForbiddenCombinations = forbiddenCombinations
                         .Where(t => t.ProductTo.Id == p.Id).Select(t => new ForbiddenCombination
