@@ -1,4 +1,9 @@
 ﻿@using VendingMachine.WebApp.Resources
+<style>
+    .group-product tr td {
+        padding: 5px;
+    }
+</style>
 <div ng-controller="app.views.order.order as vm" style="width: 60%" class="center-block">
     <div ng-show="vm.errors.ErrorGeneralMessage.Errors.length > 0 && vm.showAlert == true" class="alert alert-danger alert-dismissable">
         <button type="button" ng-click="vm.closeAlert()" class="close" data-hide="alert">&times;</button>
@@ -8,7 +13,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <table>
+            <table class="group-product">
                 <tr>
                     <th colspan="4">{{vm.assortment.DrinkGroup.ProductTypeName}}</th>
                 </tr>
@@ -21,7 +26,7 @@
             </table>
         </div>
         <div class="col-md-6">
-            <table>
+            <table class="group-product">
                 <tr>
                     <th colspan="4">{{vm.assortment.FoodGroup.ProductTypeName}}</th>
                 </tr>
@@ -36,14 +41,14 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <table>
+            <table class="group-product">
                 <tr>
                     <th colspan="4">{{vm.assortment.DrinkAdditionGroup.ProductTypeName}}</th>
                 </tr>
                 <tr ng-repeat="p in vm.assortment.DrinkAdditionGroup.Items">
                     <td><input ng-disabled="p.AllowableCombination != true" ng-model="p.Checked" type="checkbox"></td>
                     <td>
-                        <select ng-show="vm.assortment.SugarCount > 0 && p.Id == vm.assortment.SugarId" required ng-model="vm.assortment.SugarCount">
+                        <select ng-disabled="p.Checked != true" ng-show="vm.assortment.SugarCount > 0 && p.Id == vm.assortment.SugarId" required ng-model="vm.assortment.SugarCount">
                             <option ng-repeat="option in vm.assortment.SugarCounts" value="{{option}}">{{option}}</option>
                         </select>
                         {{p.Name}}
@@ -55,7 +60,7 @@
             
         </div>
         <div class="col-md-6">
-            <table>
+            <table class="group-product">
                 <tr>
                     <th colspan="4">{{vm.assortment.FoodAdditionGroup.ProductTypeName}}</th>
                 </tr>
@@ -70,7 +75,7 @@
     </div>
     <div>
         <div class="col-md-12">
-            <table>
+            <table class="group-product">
                 <tr>
                     <td><input ng-model="vm.assortment.Composition.Selected" type="checkbox"></td>
                     <td>{{vm.assortment.Composition.Note}}</td>
