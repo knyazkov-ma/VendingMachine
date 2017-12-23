@@ -63,7 +63,7 @@
 
 
 INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (1, 0, 'Вода',		20,		0)
-INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (2, 0, 'Экспрессо',	50,		1)
+INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (2, 0, 'Эспрессо',	50,		1)
 INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (3, 0, 'Латте',		60,		2)
 INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (4, 0, 'Капучино',	70,		3)
 INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (5, 0, 'Чай черный',	25,		4)
