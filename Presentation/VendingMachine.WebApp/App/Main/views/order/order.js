@@ -53,6 +53,15 @@
                 vm.errors = {};
             }
 
+            addAdditionsInOrder = function (additions, order)
+            {
+                for (var i = 0; i < additions.length; i++) {
+                    var p = additions[i];
+                    if (p.Checked)
+                        order.SelectedProductIds.push(p.Id);
+                }
+            }
+
             vm.confirmOrder = function ()
             {
                 vm.errors = {};
@@ -69,19 +78,8 @@
                 if(vm.assortment.DrinkGroup.SelectedId > 0)
                     order.SelectedProductIds.push(vm.assortment.DrinkGroup.SelectedId);
 
-
-                for (var i = 0; i < vm.assortment.FoodAdditionGroup.Items.length; i++)
-                {
-                    var p = vm.assortment.FoodAdditionGroup.Items[i];
-                    if (p.Checked)
-                        order.SelectedProductIds.push(p.Id);
-                }
-
-                for (var i = 0; i < vm.assortment.DrinkAdditionGroup.Items.length; i++) {
-                    var p = vm.assortment.DrinkAdditionGroup.Items[i];
-                    if (p.Checked)
-                        order.SelectedProductIds.push(p.Id);
-                }
+                addAdditionsInOrder(vm.assortment.FoodAdditionGroup.Items, order);
+                addAdditionsInOrder(vm.assortment.DrinkAdditionGroup.Items, order);
 
                 orderService.confirmOrder(order).then(function (results) {
                     if (results.data.success === false) {
@@ -96,41 +94,42 @@
                 });
             }
 
-            vm.setAllowableDrinkCombination = function (product)
+            setAllowableCombination = function (additions, product, juxtaposition)
             {
-                for (var i = 0; i < vm.assortment.DrinkAdditionGroup.Items.length; i++)
-                {
-                    var p = vm.assortment.DrinkAdditionGroup.Items[i];
+                for (var i = 0; i < additions.length; i++) {
+                    var p = additions[i];
                     p.AllowableCombination = false;
                     p.Checked = false;
                     for (var j = 0; j < product.Combinations.length; j++)
                     {
                         var c = product.Combinations[j];
-                        if (c.ProductTo.Id == p.Id)
-                        {
-                            if (!c.Required)
-                                p.AllowableCombination = true;
-                            p.Checked = c.Required;
-                            
+                        if (c.ProductTo.Id == p.Id) {
+                            juxtaposition(p, c);
                             break;
                         }
                     }
                 }
             }
-            
-            vm.setAllowableFoodCombination = function (product) {
-                for (var i = 0; i < vm.assortment.FoodAdditionGroup.Items.length; i++) {
-                    var p = vm.assortment.FoodAdditionGroup.Items[i];
-                    p.AllowableCombination = false;
-                    p.Checked = false;
-                    for (var j = 0; j < product.Combinations.length; j++) {
-                        var c = product.Combinations[j];
-                        if (c.ProductTo.Id == p.Id) {
+
+
+            vm.setAllowableDrinkCombination = function (product)
+            {
+                setAllowableCombination(vm.assortment.DrinkAdditionGroup.Items, product,
+                    function (p, c) {
+                        if (!c.Required)
                             p.AllowableCombination = true;
-                            break;
-                        }
-                    }
-                }
+                        p.Checked = c.Required;
+                    });
+
+            }
+            
+            vm.setAllowableFoodCombination = function (product)
+            {
+                setAllowableCombination(vm.assortment.FoodAdditionGroup.Items, product,
+                    function (p) {
+                        p.AllowableCombination = true;
+                    });
+
             }
 
             vm.resetForbiddenFoodCombination = function (product) {
