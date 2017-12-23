@@ -70,7 +70,7 @@ namespace VendingMachine.DataService.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Для заказа комплекса необходимо выбрать 1 напиток с любой едой + 1 напиток с любой добавкой.
+        ///   Looks up a localized string similar to Для заказа комплекса необходимо выбрать 1 напиток с любой добавкой + 1 еду с любой добавкой.
         /// </summary>
         internal static string ExceptionMsg_NotCompleteComposition {
             get {

@@ -138,8 +138,6 @@ namespace VendingMachine.DataService
 
             if (order.Composition)
             {
-                int countAdditionProduct = products.Count(t => t.ProductType == ProductType.DrinkAddition || t.ProductType == ProductType.FoodAddition);
-
                 if(countProduct < 2)
                     throw new DataServiceException(Resource.ExceptionMsg_NotCompleteComposition);
 
