@@ -4,7 +4,7 @@
         padding: 5px;
     }
 </style>
-<div ng-controller="app.views.order.order as vm" style="width: 60%" class="center-block">
+<div ng-controller="app.views.order.order as vm" style="width: 40%" class="center-block">
     <div ng-show="vm.errors.ErrorGeneralMessage.Errors.length > 0 && vm.showAlert == true" class="alert alert-danger alert-dismissable">
         <button type="button" ng-click="vm.closeAlert()" class="close" data-hide="alert">&times;</button>
         <div ng-repeat="e in vm.errors.ErrorGeneralMessage.Errors">
@@ -73,7 +73,7 @@
             </table>
         </div>
     </div>
-    <div>
+    <div style="margin-top: 20px">
         <div class="col-md-12">
             <table class="group-product">
                 <tr>
@@ -85,7 +85,7 @@
             </table>
         </div>
    </div>
-    <div>
+    <div style="margin-top: 60px">
         <div class="col-md-12">
             <button type="button" ng-click="vm.confirmOrder()" class="btn btn-primary">
                 @Resource.Action_ConfirmOrder
@@ -96,7 +96,7 @@
             </button>
         </div>
     </div>
-    <div>
+    <div style="margin-top: 60px; text-align: right; font-size: 18pt">
         <div class="col-md-12">
             <div>@Resource.Label_Summary: <span>{{vm.assortment.Summary}}</span></div>
         </div>
