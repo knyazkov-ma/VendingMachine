@@ -78,19 +78,18 @@
                         }
                     }
 
-                    /*Бутерброд (Хлеб+Ветчина)*/
-                    if (selectedProduct.TransformationName && additionGroup.Items.length > 0)
-                    {
-                        selectedItem.Name = selectedProduct.TransformationName;
-                        selectedItem.Additions.push({ Name: selectedProduct.Name });
-                    }
-
                     for (var i = 0; i < additionGroup.Items.length; i++) {
                         var p = additionGroup.Items[i];
                         if (p.Checked) {
                             order.SelectedProductIds.push(p.Id);
                             selectedItem.Additions.push({ Name: p.Name });
                         }
+                    }
+
+                    /*Бутерброд (Хлеб+Ветчина)*/
+                    if (selectedProduct.TransformationName && selectedItem.Additions.length > 0) {
+                        selectedItem.Name = selectedProduct.TransformationName;
+                        selectedItem.Additions.push({ Name: selectedProduct.Name });
                     }
 
                     vm.selectedItems.push(selectedItem);
