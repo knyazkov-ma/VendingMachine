@@ -4,7 +4,7 @@
         padding: 5px;
     }
 </style>
-<div ng-controller="app.views.order.order as vm" style="width: 40%" class="center-block">
+<div ng-show="vm.assortment != null" ng-controller="app.views.order.order as vm" style="width: 40%" class="center-block">
     <div ng-show="vm.errors.ErrorGeneralMessage.Errors.length > 0 && vm.showAlert == true" class="alert alert-danger alert-dismissable">
         <button type="button" ng-click="vm.closeAlert()" class="close" data-hide="alert">&times;</button>
         <div ng-repeat="e in vm.errors.ErrorGeneralMessage.Errors">
@@ -96,12 +96,19 @@
             </button>
         </div>
     </div>
-    <div style="margin-top: 60px; text-align: right; font-size: 18pt">
+    <div style="margin-top: 60px; text-align: right; font-size: 16pt">
         <div class="col-md-12">
-            <div>@Resource.Label_Summary: <span>{{vm.assortment.Summary}}</span></div>
+            <div ng-repeat="item in vm.selectedItems">
+               <span>{{item.Name}}</span>
+               <span ng-show="item.Additions.length > 0">
+                (
+                    <span ng-repeat="a in item.Additions">
+                        {{a.Name}}<span ng-show="item.Additions.length - 1 > $index"> + </span>
+                    </span>
+                )
+               </span>  
+            </div>
+            <div>@Resource.Label_Summary: <span>{{vm.assortment.Summary}}</span> @Resource.Label_RUR</div>
         </div>
     </div>
-    
-    
-   
 </div>

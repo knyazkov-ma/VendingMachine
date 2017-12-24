@@ -13,9 +13,10 @@
                 vm.errors = {};
                 vm.showAlert = false;
             }
-
+            vm.assortment = null;
+            vm.selectedItems = [];
             var init = function () {
-
+                vm.selectedItems = [];
                 orderService.getAssortment().then(function (results) {
                     vm.assortment = results.data.data;
 
@@ -53,33 +54,56 @@
                 vm.errors = {};
             }
 
-            addAdditionsInOrder = function (additions, order)
+            prepareOrder = function (productGroup, additionGroup, order)
             {
-                for (var i = 0; i < additions.length; i++) {
-                    var p = additions[i];
-                    if (p.Checked)
-                        order.SelectedProductIds.push(p.Id);
-                }
+                if (productGroup.SelectedId > 0)
+                {
+                    var selectedItem = { Name: null, Additions: [] };
+                    var selectedProduct = null;
+                    order.SelectedProductIds.push(productGroup.SelectedId);
+                    for (var i = 0; i < productGroup.Items.length; i++) {
+                        var p = productGroup.Items[i];
+                        if (p.Id == productGroup.SelectedId) {
+                            selectedItem.Name = p.Name;
+                            selectedProduct = p;
+                            break;
+                        }
+                    }
+
+                    /*Капучино (Эспрессо + Молоко + Сахар) - чтобы попало Эспрессо, которое в интерфейсе не выбрано*/
+                    for (var i = 0; i < selectedProduct.Combinations.length; i++) {
+                        var c = selectedProduct.Combinations[i];
+                        if (c.Required && c.ProductTo.ProductType == 0 /*enum ProductType.Drink*/) {
+                            selectedItem.Additions.push({ Name: c.ProductTo.Name });
+                        }
+                    }
+
+                    for (var i = 0; i < additionGroup.Items.length; i++) {
+                        var p = additionGroup.Items[i];
+                        if (p.Checked) {
+                            order.SelectedProductIds.push(p.Id);
+                            selectedItem.Additions.push({ Name: p.Name });
+                        }
+                    }
+
+                    vm.selectedItems.push(selectedItem);
+                }                    
             }
 
             vm.confirmOrder = function ()
             {
                 vm.errors = {};
                 vm.showAlert = true;
+                vm.selectedItems = [];
 
                 var order = {
                     SelectedProductIds: [],
                     Composition: vm.assortment.Composition.Selected,
                     SugarCount: vm.assortment.SugarCount
                 };
-
-                if(vm.assortment.FoodGroup.SelectedId > 0)
-                    order.SelectedProductIds.push(vm.assortment.FoodGroup.SelectedId);
-                if(vm.assortment.DrinkGroup.SelectedId > 0)
-                    order.SelectedProductIds.push(vm.assortment.DrinkGroup.SelectedId);
-
-                addAdditionsInOrder(vm.assortment.FoodAdditionGroup.Items, order);
-                addAdditionsInOrder(vm.assortment.DrinkAdditionGroup.Items, order);
+                
+                prepareOrder(vm.assortment.FoodGroup, vm.assortment.FoodAdditionGroup, order);
+                prepareOrder(vm.assortment.DrinkGroup, vm.assortment.DrinkAdditionGroup, order);
 
                 orderService.confirmOrder(order).then(function (results) {
                     if (results.data.success === false) {
@@ -147,7 +171,7 @@
                     }
                 }
             }
-
+                        
             vm.cancel = function ()
             {
                 init();
