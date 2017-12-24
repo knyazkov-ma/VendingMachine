@@ -30,6 +30,7 @@
     create table Product (
         Id BIGINT not null,
        Name VARCHAR(1000) not null,
+	   TransformationName VARCHAR(1000),
        Ord INT not null,
        Price DECIMAL(19,5) not null,
        ProductType INT not null,
@@ -71,8 +72,8 @@ INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (6, 0, 'Чай зе�
 INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (7, 1, 'Молоко',		10,		6)
 INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (8, 1, 'Сироп',		5,		7)
 INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (9, 1, 'Сахар',		3,		8)
-INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (10, 2, 'Хлеб',		10,		9)
-INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (11, 2, 'Булочка',	15,		10)
+INSERT [Product] (Id, ProductType, Name, Price, Ord, TransformationName) VALUES (10, 2, 'Хлеб',		10,		9, 'Бутерброд')
+INSERT [Product] (Id, ProductType, Name, Price, Ord, TransformationName) VALUES (11, 2, 'Булочка',	15,		10, 'Бутерброд')
 INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (12, 2, 'Чипсы',		34,		11)
 INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (13, 2, 'Печенье',	29,		12)
 INSERT [Product] (Id, ProductType, Name, Price, Ord) VALUES (14, 3, 'Ветчина',	15,		13)

@@ -4,6 +4,7 @@
     <id name="Id" column="Id" unsaved-value="0"></id>
 
     <property name="Name" length="1000" not-null="true"/>
+    <property name="TransformationName" length="1000"/>
     <property name="Ord" type="Int32" not-null="true"/>
     <property name="Price" type="Decimal"  not-null="true"/>
     <property name="ProductType" type="VendingMachine.Entity.ProductType, VendingMachine.Entity" not-null="true"/>

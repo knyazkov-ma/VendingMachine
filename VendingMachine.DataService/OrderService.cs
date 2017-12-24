@@ -56,6 +56,7 @@ namespace VendingMachine.DataService
                 {
                     Id = p.Id,
                     Name = p.Name,
+                    TransformationName = p.TransformationName,
                     Price = p.Price,
                     ProductType = p.ProductType,
                     Combinations = combinations.Where(t => t.ProductFrom.Id == p.Id)

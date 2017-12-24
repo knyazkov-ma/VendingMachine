@@ -11,6 +11,11 @@
         public string Name { get; set; }
 
         /// <summary>
+        /// Наименование с добавками (например, хлеб + ветчина = бутерброт (хлеб + ветчина)) 
+        /// </summary>
+        public string TransformationName { get; set; }
+
+        /// <summary>
         /// Для сортировки в UI
         /// </summary>
         public int Ord { get; set; }

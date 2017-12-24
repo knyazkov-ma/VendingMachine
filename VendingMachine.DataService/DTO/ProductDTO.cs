@@ -17,6 +17,11 @@ namespace VendingMachine.DataService.DTO
         public string Name { get; set; }
 
         /// <summary>
+        /// Наименование с добавками (например, хлеб + ветчина = бутерброт (хлеб + ветчина)) 
+        /// </summary>
+        public string TransformationName { get; set; }
+
+        /// <summary>
         /// Цена
         /// </summary>
         public decimal Price { get; set; }
