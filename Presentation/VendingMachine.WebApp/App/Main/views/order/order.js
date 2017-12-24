@@ -89,7 +89,7 @@
                     /*Бутерброд (Хлеб+Ветчина)*/
                     if (selectedProduct.TransformationName && selectedItem.Additions.length > 0) {
                         selectedItem.Name = selectedProduct.TransformationName;
-                        selectedItem.Additions.push({ Name: selectedProduct.Name });
+                        selectedItem.Additions.splice(0, 0, { Name: selectedProduct.Name });
                     }
 
                     vm.selectedItems.push(selectedItem);
